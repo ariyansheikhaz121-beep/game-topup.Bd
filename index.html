@@ -1,1 +1,528 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Game Top-Up BD</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f2f4f7;
+  color:#222;
+}
+
+header{
+  background:linear-gradient(135deg,#111827,#2563eb);
+  color:white;
+  text-align:center;
+  padding:25px 10px;
+}
+
+header h1{
+  margin:0;
+  font-size:28px;
+}
+
+header p{
+  margin:8px 0 0;
+}
+
+.container{
+  max-width:700px;
+  margin:20px auto;
+  padding:15px;
+}
+
+.box{
+  background:white;
+  padding:20px;
+  margin-bottom:18px;
+  border-radius:15px;
+  box-shadow:0 3px 12px #0001;
+}
+
+h2{
+  margin-top:0;
+}
+
+.games{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.game{
+  border:2px solid #ddd;
+  border-radius:10px;
+  padding:15px 5px;
+  text-align:center;
+  cursor:pointer;
+  background:white;
+}
+
+.game:hover{
+  border-color:#2563eb;
+}
+
+.game.selected{
+  border-color:#2563eb;
+  background:#eff6ff;
+}
+
+input{
+  width:100%;
+  padding:13px;
+  margin:7px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+}
+
+.packages{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin-top:10px;
+}
+
+.package{
+  padding:15px;
+  border:2px solid #ddd;
+  border-radius:10px;
+  text-align:center;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.package.selected{
+  border-color:#16a34a;
+  background:#f0fdf4;
+}
+
+.payments{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:10px;
+}
+
+.payment{
+  padding:15px;
+  border:2px solid #ddd;
+  border-radius:10px;
+  text-align:center;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.payment.selected{
+  border-color:#e11d48;
+  background:#fff1f2;
+}
+
+#paymentInfo{
+  margin-top:12px;
+  padding:15px;
+  background:#fff1f2;
+  border-radius:10px;
+  display:none;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:10px;
+  background:#2563eb;
+  color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎮 GAME TOP-UP BD 💎</h1>
+  <p>Fast • Secure • Easy Top-Up</p>
+</header>
+
+<div class="container">
+
+  <!-- গেম নির্বাচন -->
+  <div class="box">
+
+    <h2>🎮 গেম নির্বাচন করুন</h2>
+
+    <div class="games">
+
+      <div class="game" onclick="gameSelect('Free Fire',this)">
+        🔥<br>Free Fire
+      </div>
+
+      <div class="game" onclick="gameSelect('PUBG Mobile',this)">
+        🎯<br>PUBG Mobile
+      </div>
+
+      <div class="game" onclick="gameSelect('Mobile Legends',this)">
+        ⚔️<br>Mobile Legends
+      </div>
+
+      <div class="game" onclick="gameSelect('Call of Duty Mobile',this)">
+        🔫<br>Call of Duty
+      </div>
+
+      <div class="game" onclick="gameSelect('eFootball',this)">
+        ⚽<br>eFootball
+      </div>
+
+      <div class="game" onclick="gameSelect('Clash of Clans',this)">
+        🏰<br>Clash of Clans
+      </div>
+
+      <div class="game" onclick="gameSelect('Clash Royale',this)">
+        👑<br>Clash Royale
+      </div>
+
+      <div class="game" onclick="gameSelect('Roblox',this)">
+        🧱<br>Roblox
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- অর্ডার -->
+  <div class="box">
+
+    <h2 id="gameName">💎 Top-Up Order</h2>
+
+    <label>Player ID / UID</label>
+
+    <input
+      id="playerId"
+      type="text"
+      placeholder="আপনার Player ID / UID লিখুন"
+    >
+
+
+    <label>Server / Zone</label>
+
+    <input
+      id="server"
+      type="text"
+      placeholder="প্রযোজ্য হলে Server / Zone লিখুন"
+    >
+
+
+    <h3>💰 প্যাকেজ নির্বাচন করুন</h3>
+
+    <div class="packages">
+
+      <div class="package" onclick="pkg('৳50',this)">
+        ৳50
+      </div>
+
+      <div class="package" onclick="pkg('৳100',this)">
+        ৳100
+      </div>
+
+      <div class="package" onclick="pkg('৳200',this)">
+        ৳200
+      </div>
+
+      <div class="package" onclick="pkg('৳500',this)">
+        ৳500
+      </div>
+
+    </div>
+
+
+    <h3>💳 পেমেন্ট পদ্ধতি</h3>
+
+    <!-- শুধু bKash -->
+    <div class="payments">
+
+      <div
+        class="payment"
+        onclick="paymentSelect('bKash',this)"
+      >
+        💗 bKash Payment
+      </div>
+
+    </div>
+
+
+    <!-- bKash তথ্য -->
+    <div id="paymentInfo"></div>
+
+
+    <label>Transaction ID / TrxID</label>
+
+    <input
+      id="trxid"
+      type="text"
+      placeholder="পেমেন্ট করার পর TrxID লিখুন"
+    >
+
+
+    <label>আপনার নাম</label>
+
+    <input
+      id="name"
+      type="text"
+      placeholder="আপনার নাম"
+    >
+
+
+    <label>মোবাইল নম্বর</label>
+
+    <input
+      id="phone"
+      type="tel"
+      placeholder="01XXXXXXXXX"
+    >
+
+
+    <br><br>
+
+    <button onclick="orderNow()">
+      ✅ ORDER NOW
+    </button>
+
+  </div>
+
+</div>
+
+
+<footer>
+  © 2026 Game Top-Up BD
+</footer>
+
+
+<script>
+
+/* =========================
+   ORDER DATA
+========================= */
+
+let selectedGame = "";
+let selectedPackage = "";
+let selectedPayment = "";
+
+
+/* =========================
+   তোমার bKash ব্যবসার নম্বর
+   এখানে নিজের নম্বর বসাবে
+========================= */
+
+const BKASH_NUMBER = "01301482945";
+
+
+/* =========================
+   GAME SELECT
+========================= */
+
+function gameSelect(game, element){
+
+  selectedGame = game;
+
+  document.getElementById("gameName").innerText =
+    "💎 " + game + " Top-Up";
+
+  document.querySelectorAll(".game")
+    .forEach(x => x.classList.remove("selected"));
+
+  element.classList.add("selected");
+}
+
+
+/* =========================
+   PACKAGE SELECT
+========================= */
+
+function pkg(price, element){
+
+  selectedPackage = price;
+
+  document.querySelectorAll(".package")
+    .forEach(x => x.classList.remove("selected"));
+
+  element.classList.add("selected");
+}
+
+
+/* =========================
+   bKASH PAYMENT
+========================= */
+
+function paymentSelect(method, element){
+
+  selectedPayment = method;
+
+  document.querySelectorAll(".payment")
+    .forEach(x => x.classList.remove("selected"));
+
+  element.classList.add("selected");
+
+  let box = document.getElementById("paymentInfo");
+
+  box.style.display = "block";
+
+  box.innerHTML =
+
+    "💗 <b>bKash Payment</b><br><br>" +
+
+    "এই নম্বরে পেমেন্ট করুন:<br>" +
+
+    "<strong>" +
+    BKASH_NUMBER +
+    "</strong><br><br>" +
+
+    "পেমেন্ট করার পর Transaction ID / TrxID নিচে লিখুন।";
+}
+
+
+/* =========================
+   ORDER
+========================= */
+
+function orderNow(){
+
+  let playerId =
+    document.getElementById("playerId").value.trim();
+
+  let server =
+    document.getElementById("server").value.trim();
+
+  let trxid =
+    document.getElementById("trxid").value.trim();
+
+  let name =
+    document.getElementById("name").value.trim();
+
+  let phone =
+    document.getElementById("phone").value.trim();
+
+
+  /* গেম চেক */
+
+  if(!selectedGame){
+
+    alert("দয়া করে আগে গেম নির্বাচন করুন।");
+
+    return;
+  }
+
+
+  /* Player ID চেক */
+
+  if(!playerId){
+
+    alert("Player ID / UID লিখুন।");
+
+    return;
+  }
+
+
+  /* Package চেক */
+
+  if(!selectedPackage){
+
+    alert("দয়া করে একটি প্যাকেজ নির্বাচন করুন।");
+
+    return;
+  }
+
+
+  /* Payment চেক */
+
+  if(!selectedPayment){
+
+    alert("দয়া করে bKash Payment নির্বাচন করুন।");
+
+    return;
+  }
+
+
+  /* TrxID চেক */
+
+  if(!trxid){
+
+    alert("Transaction ID / TrxID লিখুন।");
+
+    return;
+  }
+
+
+  /* নাম চেক */
+
+  if(!name){
+
+    alert("আপনার নাম লিখুন।");
+
+    return;
+  }
+
+
+  /* ফোন চেক */
+
+  if(!phone){
+
+    alert("আপনার মোবাইল নম্বর লিখুন।");
+
+    return;
+  }
+
+
+  /* Order information */
+
+  alert(
+
+    "✅ আপনার অর্ডারের তথ্য প্রস্তুত হয়েছে।\n\n" +
+
+    "🎮 Game: " +
+    selectedGame +
+
+    "\n💎 Package: " +
+    selectedPackage +
+
+    "\n💗 Payment: " +
+    selectedPayment +
+
+    "\n🧾 TrxID: " +
+    trxid +
+
+    "\n👤 Name: " +
+    name +
+
+    "\n📱 Phone: " +
+    phone
+
+  );
+
+}
+
+</script>
+
+</body>
+                    </html>
