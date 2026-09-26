@@ -1,209 +1,323 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Game Top-Up BD</title>
+  <title>Game TopUp BD</title>
 
-<style>
-*{
-  box-sizing:border-box;
-}
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      font-family:Arial, sans-serif;
+    }
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f2f4f7;
-  color:#222;
-}
+    body{
+      background:#f2f5f9;
+      color:#222;
+      padding-bottom:40px;
+    }
 
-header{
-  background:linear-gradient(135deg,#111827,#2563eb);
-  color:white;
-  text-align:center;
-  padding:25px 10px;
-}
+    header{
+      background:linear-gradient(135deg,#e91e63,#9c27b0);
+      color:white;
+      text-align:center;
+      padding:25px 15px;
+    }
 
-header h1{
-  margin:0;
-  font-size:28px;
-}
+    header h1{
+      font-size:28px;
+      margin-bottom:7px;
+    }
 
-header p{
-  margin:8px 0 0;
-}
+    header p{
+      font-size:14px;
+    }
 
-.container{
-  max-width:700px;
-  margin:20px auto;
-  padding:15px;
-}
+    .container{
+      max-width:650px;
+      margin:20px auto;
+      padding:0 15px;
+    }
 
-.box{
-  background:white;
-  padding:20px;
-  margin-bottom:18px;
-  border-radius:15px;
-  box-shadow:0 3px 12px #0001;
-}
+    .card{
+      background:white;
+      border-radius:15px;
+      padding:20px;
+      margin-bottom:18px;
+      box-shadow:0 4px 15px rgba(0,0,0,.08);
+    }
 
-h2{
-  margin-top:0;
-}
+    h2,h3{
+      margin-bottom:15px;
+    }
 
-.games{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-}
+    h3{
+      font-size:18px;
+    }
 
-.game{
-  border:2px solid #ddd;
-  border-radius:10px;
-  padding:15px 5px;
-  text-align:center;
-  cursor:pointer;
-  background:white;
-}
+    label{
+      display:block;
+      margin:12px 0 6px;
+      font-weight:bold;
+    }
 
-.game:hover{
-  border-color:#2563eb;
-}
+    input,select{
+      width:100%;
+      padding:13px;
+      border:1px solid #ddd;
+      border-radius:9px;
+      font-size:15px;
+      outline:none;
+    }
 
-.game.selected{
-  border-color:#2563eb;
-  background:#eff6ff;
-}
+    input:focus,select:focus{
+      border-color:#9c27b0;
+    }
 
-input{
-  width:100%;
-  padding:13px;
-  margin:7px 0;
-  border:1px solid #ccc;
-  border-radius:8px;
-  font-size:15px;
-}
+    .packages{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
 
-.packages{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
-  margin-top:10px;
-}
+    .package{
+      border:2px solid #eee;
+      border-radius:10px;
+      padding:13px 8px;
+      text-align:center;
+      cursor:pointer;
+      background:#fff;
+      transition:.2s;
+      font-weight:bold;
+      font-size:14px;
+    }
 
-.package{
-  padding:15px;
-  border:2px solid #ddd;
-  border-radius:10px;
-  text-align:center;
-  cursor:pointer;
-  font-weight:bold;
-}
+    .package:hover{
+      border-color:#9c27b0;
+    }
 
-.package.selected{
-  border-color:#16a34a;
-  background:#f0fdf4;
-}
+    .package.selected{
+      background:#9c27b0;
+      color:white;
+      border-color:#9c27b0;
+    }
 
-.payments{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:10px;
-}
+    .payment{
+      border:2px solid #eee;
+      border-radius:10px;
+      padding:15px;
+      cursor:pointer;
+      margin-bottom:10px;
+      font-weight:bold;
+    }
 
-.payment{
-  padding:15px;
-  border:2px solid #ddd;
-  border-radius:10px;
-  text-align:center;
-  cursor:pointer;
-  font-weight:bold;
-}
+    .payment.selected{
+      border-color:#e91e63;
+      background:#fff0f5;
+    }
 
-.payment.selected{
-  border-color:#e11d48;
-  background:#fff1f2;
-}
+    .payment-info{
+      display:none;
+      background:#fff3f7;
+      border:1px solid #ffc1d5;
+      border-radius:10px;
+      padding:15px;
+      margin-top:12px;
+      line-height:1.7;
+    }
 
-#paymentInfo{
-  margin-top:12px;
-  padding:15px;
-  background:#fff1f2;
-  border-radius:10px;
-  display:none;
-}
+    .bkash-number{
+      font-size:20px;
+      font-weight:bold;
+      color:#d81b60;
+      letter-spacing:1px;
+    }
 
-button{
-  width:100%;
-  padding:15px;
-  border:0;
-  border-radius:10px;
-  background:#2563eb;
-  color:white;
-  font-size:17px;
-  font-weight:bold;
-  cursor:pointer;
-}
+    .order-btn{
+      width:100%;
+      border:none;
+      background:linear-gradient(135deg,#e91e63,#9c27b0);
+      color:white;
+      padding:16px;
+      border-radius:10px;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      margin-top:10px;
+    }
 
-button:hover{
-  background:#1d4ed8;
-}
+    .order-btn:hover{
+      opacity:.9;
+    }
 
-footer{
-  text-align:center;
-  padding:20px;
-  color:#666;
-}
-</style>
+    .note{
+      background:#fff8e1;
+      border-left:4px solid #ffc107;
+      padding:12px;
+      border-radius:6px;
+      margin-top:10px;
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .success{
+      display:none;
+      background:#e8f5e9;
+      border:1px solid #81c784;
+      color:#1b5e20;
+      padding:15px;
+      border-radius:10px;
+      margin-top:15px;
+      line-height:1.7;
+    }
+
+    footer{
+      text-align:center;
+      color:#777;
+      font-size:13px;
+      padding:15px;
+    }
+
+    @media(max-width:450px){
+      .packages{
+        grid-template-columns:1fr 1fr;
+      }
+
+      header h1{
+        font-size:24px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-  <h1>🎮 GAME TOP-UP BD 💎</h1>
-  <p>Fast • Secure • Easy Top-Up</p>
+  <h1>🎮 Game TopUp BD</h1>
+  <p>দ্রুত ও সহজে আপনার Game TopUp করুন</p>
 </header>
 
 <div class="container">
 
-  <!-- গেম নির্বাচন -->
-  <div class="box">
+  <!-- GAME INFORMATION -->
+  <div class="card">
 
-    <h2>🎮 গেম নির্বাচন করুন</h2>
+    <h3>🎮 Game নির্বাচন করুন</h3>
 
-    <div class="games">
+    <label>Game</label>
 
-      <div class="game" onclick="gameSelect('Free Fire',this)">
-        🔥<br>Free Fire
+    <select id="game">
+      <option value="">-- Game নির্বাচন করুন --</option>
+      <option value="Free Fire">Free Fire</option>
+      <option value="PUBG Mobile">PUBG Mobile</option>
+      <option value="Mobile Legends">Mobile Legends</option>
+    </select>
+
+    <label>Player ID / UID</label>
+    <input
+      type="text"
+      id="playerId"
+      placeholder="আপনার Player ID / UID লিখুন"
+    >
+
+    <label>Server / Zone</label>
+    <input
+      type="text"
+      id="server"
+      placeholder="প্রয়োজন হলে Server / Zone লিখুন"
+    >
+
+  </div>
+
+
+  <!-- PACKAGE -->
+  <div class="card">
+
+    <h3>💰 প্যাকেজ নির্বাচন করুন</h3>
+
+    <div class="packages">
+
+      <div class="package"
+           onclick="pkg('Weekly',158,this)">
+        Weekly — BDT 158
       </div>
 
-      <div class="game" onclick="gameSelect('PUBG Mobile',this)">
-        🎯<br>PUBG Mobile
+      <div class="package"
+           onclick="pkg('Monthly',782,this)">
+        Monthly — BDT 782
       </div>
 
-      <div class="game" onclick="gameSelect('Mobile Legends',this)">
-        ⚔️<br>Mobile Legends
+      <div class="package"
+           onclick="pkg('25 Diamond',22,this)">
+        25 Diamond — BDT 22
       </div>
 
-      <div class="game" onclick="gameSelect('Call of Duty Mobile',this)">
-        🔫<br>Call of Duty
+      <div class="package"
+           onclick="pkg('50 Diamond',37,this)">
+        50 Diamond — BDT 37
       </div>
 
-      <div class="game" onclick="gameSelect('eFootball',this)">
-        ⚽<br>eFootball
+      <div class="package"
+           onclick="pkg('115 Diamond',80,this)">
+        115 Diamond — BDT 80
       </div>
 
-      <div class="game" onclick="gameSelect('Clash of Clans',this)">
-        🏰<br>Clash of Clans
+      <div class="package"
+           onclick="pkg('240 Diamond',158,this)">
+        240 Diamond — BDT 158
       </div>
 
-      <div class="game" onclick="gameSelect('Clash Royale',this)">
-        👑<br>Clash Royale
+      <div class="package"
+           onclick="pkg('355 Diamond',236,this)">
+        355 Diamond — BDT 236
       </div>
 
-      <div class="game" onclick="gameSelect('Roblox',this)">
-        🧱<br>Roblox
+      <div class="package"
+           onclick="pkg('480 Diamond',317,this)">
+        480 Diamond — BDT 317
+      </div>
+
+      <div class="package"
+           onclick="pkg('505 Diamond',337,this)">
+        505 Diamond — BDT 337
+      </div>
+
+      <div class="package"
+           onclick="pkg('610 Diamond',402,this)">
+        610 Diamond — BDT 402
+      </div>
+
+      <div class="package"
+           onclick="pkg('850 Diamond',560,this)">
+        850 Diamond — BDT 560
+      </div>
+
+      <div class="package"
+           onclick="pkg('1090 Diamond',718,this)">
+        1090 Diamond — BDT 718
+      </div>
+
+      <div class="package"
+           onclick="pkg('1240 Diamond',802,this)">
+        1240 Diamond — BDT 802
+      </div>
+
+      <div class="package"
+           onclick="pkg('1850 Diamond',1202,this)">
+        1850 Diamond — BDT 1202
+      </div>
+
+      <div class="package"
+           onclick="pkg('2090 Diamond',1360,this)">
+        2090 Diamond — BDT 1360
+      </div>
+
+      <div class="package"
+           onclick="pkg('2530 Diamond',1612,this)">
+        2530 Diamond — BDT 1612
       </div>
 
     </div>
@@ -211,103 +325,82 @@ footer{
   </div>
 
 
-  <!-- অর্ডার -->
-  <div class="box">
-
-    <h2 id="gameName">💎 Top-Up Order</h2>
-
-    <label>Player ID / UID</label>
-
-    <input
-      id="playerId"
-      type="text"
-      placeholder="আপনার Player ID / UID লিখুন"
-    >
-
-
-    <label>Server / Zone</label>
-
-    <input
-      id="server"
-      type="text"
-      placeholder="প্রযোজ্য হলে Server / Zone লিখুন"
-    >
-
-
-    <h3>💰 প্যাকেজ নির্বাচন করুন</h3>
-
-    <div class="packages">
-
-      <div class="package" onclick="pkg('৳50',this)">
-        ৳50
-      </div>
-
-      <div class="package" onclick="pkg('৳100',this)">
-        ৳100
-      </div>
-
-      <div class="package" onclick="pkg('৳200',this)">
-        ৳200
-      </div>
-
-      <div class="package" onclick="pkg('৳500',this)">
-        ৳500
-      </div>
-
-    </div>
-
+  <!-- PAYMENT -->
+  <div class="card">
 
     <h3>💳 পেমেন্ট পদ্ধতি</h3>
 
-    <!-- শুধু bKash -->
-    <div class="payments">
+    <div
+      class="payment"
+      onclick="paymentSelect('bKash',this)"
+    >
+      🩷 bKash
+    </div>
 
-      <div
-        class="payment"
-        onclick="paymentSelect('bKash',this)"
-      >
-        💗 bKash Payment
+    <div id="paymentInfo" class="payment-info">
+
+      <div>📱 bKash নম্বর:</div>
+
+      <div class="bkash-number">
+        01301482945
       </div>
+
+      <p>
+        উপরের নম্বরে আপনার নির্বাচিত প্যাকেজের টাকা
+        <b>Send Money</b> করুন।
+      </p>
+
+      <p>
+        টাকা পাঠানোর পর Transaction ID নিচের ঘরে লিখুন।
+      </p>
 
     </div>
 
-
-    <!-- bKash তথ্য -->
-    <div id="paymentInfo"></div>
+  </div>
 
 
-    <label>Transaction ID / TrxID</label>
+  <!-- CUSTOMER INFORMATION -->
+  <div class="card">
+
+    <h3>📝 অর্ডারের তথ্য</h3>
+
+    <label>Transaction ID</label>
 
     <input
-      id="trxid"
       type="text"
-      placeholder="পেমেন্ট করার পর TrxID লিখুন"
+      id="transaction"
+      placeholder="bKash Transaction ID লিখুন"
     >
-
 
     <label>আপনার নাম</label>
 
     <input
-      id="name"
       type="text"
-      placeholder="আপনার নাম"
+      id="customerName"
+      placeholder="আপনার নাম লিখুন"
     >
 
-
-    <label>মোবাইল নম্বর</label>
+    <label>আপনার ফোন নম্বর</label>
 
     <input
-      id="phone"
       type="tel"
+      id="customerPhone"
       placeholder="01XXXXXXXXX"
     >
 
+    <div class="note">
+      ⚠️ অর্ডার করার আগে Game ID, Package এবং Transaction ID
+      সঠিকভাবে চেক করুন।
+    </div>
 
-    <br><br>
-
-    <button onclick="orderNow()">
-      ✅ ORDER NOW
+    <button
+      class="order-btn"
+      onclick="placeOrder()"
+    >
+      🛒 ORDER NOW
     </button>
+
+    <div id="success" class="success"></div>
 
   </div>
 
@@ -315,214 +408,170 @@ footer{
 
 
 <footer>
-  © 2026 Game Top-Up BD
+  © 2026 Game TopUp BD — All Rights Reserved
 </footer>
 
 
 <script>
 
-/* =========================
-   ORDER DATA
-========================= */
-
-let selectedGame = "";
-let selectedPackage = "";
-let selectedPayment = "";
+  let selectedPackage = "";
+  let selectedPrice = 0;
+  let selectedPayment = "";
 
 
-/* =========================
-   তোমার bKash ব্যবসার নম্বর
-   এখানে নিজের নম্বর বসাবে
-========================= */
+  /* PACKAGE SELECT */
 
-const BKASH_NUMBER = "01301482945";
+  function pkg(name, price, element){
 
+    selectedPackage = name;
+    selectedPrice = price;
 
-/* =========================
-   GAME SELECT
-========================= */
+    document
+      .querySelectorAll(".package")
+      .forEach(function(x){
+        x.classList.remove("selected");
+      });
 
-function gameSelect(game, element){
-
-  selectedGame = game;
-
-  document.getElementById("gameName").innerText =
-    "💎 " + game + " Top-Up";
-
-  document.querySelectorAll(".game")
-    .forEach(x => x.classList.remove("selected"));
-
-  element.classList.add("selected");
-}
-
-
-/* =========================
-   PACKAGE SELECT
-========================= */
-
-function pkg(price, element){
-
-  selectedPackage = price;
-
-  document.querySelectorAll(".package")
-    .forEach(x => x.classList.remove("selected"));
-
-  element.classList.add("selected");
-}
-
-
-/* =========================
-   bKASH PAYMENT
-========================= */
-
-function paymentSelect(method, element){
-
-  selectedPayment = method;
-
-  document.querySelectorAll(".payment")
-    .forEach(x => x.classList.remove("selected"));
-
-  element.classList.add("selected");
-
-  let box = document.getElementById("paymentInfo");
-
-  box.style.display = "block";
-
-  box.innerHTML =
-
-    "💗 <b>bKash Payment</b><br><br>" +
-
-    "এই নম্বরে পেমেন্ট করুন:<br>" +
-
-    "<strong>" +
-    BKASH_NUMBER +
-    "</strong><br><br>" +
-
-    "পেমেন্ট করার পর Transaction ID / TrxID নিচে লিখুন।";
-}
-
-
-/* =========================
-   ORDER
-========================= */
-
-function orderNow(){
-
-  let playerId =
-    document.getElementById("playerId").value.trim();
-
-  let server =
-    document.getElementById("server").value.trim();
-
-  let trxid =
-    document.getElementById("trxid").value.trim();
-
-  let name =
-    document.getElementById("name").value.trim();
-
-  let phone =
-    document.getElementById("phone").value.trim();
-
-
-  /* গেম চেক */
-
-  if(!selectedGame){
-
-    alert("দয়া করে আগে গেম নির্বাচন করুন।");
-
-    return;
+    element.classList.add("selected");
   }
 
 
-  /* Player ID চেক */
+  /* PAYMENT SELECT */
 
-  if(!playerId){
+  function paymentSelect(method, element){
 
-    alert("Player ID / UID লিখুন।");
+    selectedPayment = method;
 
-    return;
+    document
+      .querySelectorAll(".payment")
+      .forEach(function(x){
+        x.classList.remove("selected");
+      });
+
+    element.classList.add("selected");
+
+    document.getElementById("paymentInfo").style.display = "block";
   }
 
 
-  /* Package চেক */
+  /* ORDER */
 
-  if(!selectedPackage){
+  function placeOrder(){
 
-    alert("দয়া করে একটি প্যাকেজ নির্বাচন করুন।");
+    let game =
+      document.getElementById("game").value;
 
-    return;
+    let playerId =
+      document.getElementById("playerId").value.trim();
+
+    let server =
+      document.getElementById("server").value.trim();
+
+    let transaction =
+      document.getElementById("transaction").value.trim();
+
+    let customerName =
+      document.getElementById("customerName").value.trim();
+
+    let customerPhone =
+      document.getElementById("customerPhone").value.trim();
+
+
+    if(game === ""){
+      alert("দয়া করে Game নির্বাচন করুন।");
+      return;
+    }
+
+
+    if(playerId === ""){
+      alert("দয়া করে Player ID / UID লিখুন।");
+      return;
+    }
+
+
+    if(selectedPackage === ""){
+      alert("দয়া করে একটি Package নির্বাচন করুন।");
+      return;
+    }
+
+
+    if(selectedPayment === ""){
+      alert("দয়া করে Payment Method নির্বাচন করুন।");
+      return;
+    }
+
+
+    if(transaction === ""){
+      alert("দয়া করে Transaction ID লিখুন।");
+      return;
+    }
+
+
+    if(customerName === ""){
+      alert("দয়া করে আপনার নাম লিখুন।");
+      return;
+    }
+
+
+    if(customerPhone === ""){
+      alert("দয়া করে আপনার ফোন নম্বর লিখুন।");
+      return;
+    }
+
+
+    let message =
+      "🎮 GAME TOPUP ORDER%0A%0A" +
+
+      "Game: " + encodeURIComponent(game) + "%0A" +
+
+      "Player ID: " + encodeURIComponent(playerId) + "%0A" +
+
+      "Server/Zone: " + encodeURIComponent(server) + "%0A" +
+
+      "Package: " + encodeURIComponent(selectedPackage) + "%0A" +
+
+      "Price: BDT " + selectedPrice + "%0A" +
+
+      "Payment: " + encodeURIComponent(selectedPayment) + "%0A" +
+
+      "Transaction ID: " + encodeURIComponent(transaction) + "%0A" +
+
+      "Name: " + encodeURIComponent(customerName) + "%0A" +
+
+      "Phone: " + encodeURIComponent(customerPhone);
+
+
+    /*
+      এখানে WhatsApp নম্বর দিলে অর্ডার WhatsApp-এ পাঠানো যাবে।
+
+      বর্তমানে নম্বর না দেওয়ায়
+      নিচে Order Summary দেখানো হচ্ছে।
+    */
+
+    let success =
+      document.getElementById("success");
+
+    success.style.display = "block";
+
+    success.innerHTML =
+      "<b>✅ অর্ডারের তথ্য প্রস্তুত হয়েছে!</b><br><br>" +
+
+      "🎮 Game: " + game + "<br>" +
+
+      "🆔 Player ID: " + playerId + "<br>" +
+
+      "📦 Package: " + selectedPackage + "<br>" +
+
+      "💰 Price: BDT " + selectedPrice + "<br>" +
+
+     ই "💳 Payment: " + selectedPayment + "<br>" +
+
+      "🧾 Transaction ID: " + transaction + "<br><br>" +
+
+      "আপনার দেওয়া তথ্য যাচাই করে TopUp সম্পন্ন করুন।";
   }
-
-
-  /* Payment চেক */
-
-  if(!selectedPayment){
-
-    alert("দয়া করে bKash Payment নির্বাচন করুন।");
-
-    return;
-  }
-
-
-  /* TrxID চেক */
-
-  if(!trxid){
-
-    alert("Transaction ID / TrxID লিখুন।");
-
-    return;
-  }
-
-
-  /* নাম চেক */
-
-  if(!name){
-
-    alert("আপনার নাম লিখুন।");
-
-    return;
-  }
-
-
-  /* ফোন চেক */
-
-  if(!phone){
-
-    alert("আপনার মোবাইল নম্বর লিখুন।");
-
-    return;
-  }
-
-
-  /* Order information */
-
-  alert(
-
-    "✅ আপনার অর্ডারের তথ্য প্রস্তুত হয়েছে।\n\n" +
-
-    "🎮 Game: " +
-    selectedGame +
-
-    "\n💎 Package: " +
-    selectedPackage +
-
-    "\n💗 Payment: " +
-    selectedPayment +
-
-    "\n🧾 TrxID: " +
-    trxid +
-
-    "\n👤 Name: " +
-    name +
-
-    "\n📱 Phone: " +
-    phone
-
-  );
-
-}
 
 </script>
 
 </body>
-                    </html>
+  </html>
