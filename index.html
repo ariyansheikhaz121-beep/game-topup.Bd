@@ -21,16 +21,13 @@
     }
 
     header{
-      background:linear-gradient(135deg,#e91e63,#9c27b0);
-      color:white;
-      text-align:center;
-      padding:25px 15px;
+    background:white;
+    color:#123b5d;
+    text-align:center;
+    padding:25px 15px;
+    border-bottom:1px solid #ddd;
     }
-
-    header h1{
-      font-size:28px;
-      margin-bottom:7px;
-    }
+    
 
     header p{
       font-size:14px;
@@ -179,31 +176,77 @@
       color:#777;
       font-size:13px;
       padding:15px;
-    }
+    }.top-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:white;
+    padding:18px 20px;
+    border-bottom:1px solid #ddd;
+}
 
-    @media(max-width:450px){
-      .packages{
-        grid-template-columns:1fr 1fr;
-      }
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-      header h1{
-        font-size:24px;
-      }.site-logo{
-    width:100px;
-    height:100px;
+.top-header .site-logo{
+    width:55px;
+    height:55px;
     object-fit:contain;
-    display:block;
-    margin:0 auto 10px;
-      }
+    margin:0;
+}
+
+.brand span{
+    font-size:22px;
+    font-weight:bold;
+    color:#123b5d;
+}
+
+.login-btn{
+    background:#2b9ac1;
+    color:white;
+    border:none;
+    border-radius:7px;
+    padding:12px 20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+@media(max-width:450px){
+    .top-header{
+        padding:15px 12px;
     }
+
+    .brand span{
+        font-size:18px;
+    }
+
+    .top-header .site-logo{
+        width:50px;
+        height:50px;
+    }
+
+    .login-btn{
+        padding:10px 16px;
+        font-size:16px;
+    }
+      }
+
+    
   </style>
 </head>
 
 <body>
 
-<header>
-  <img src="logo.png" alt="All Game Top Up BD Logo" class="site-logo"><h1>🎮All Game TopUp BD</h1>
-  <p>দ্রুত ও সহজে আপনার Game TopUp করুন</p>
+<header class="top-header">
+    <div class="brand">
+        <img src="logo.png" alt="All Game Top Up BD Logo" class="site-logo">
+        <span>All Game Top Up BD</span>
+    </div>
+
+    <button class="login-btn">Login</button>
 </header>
 
 <div class="container">
