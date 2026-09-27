@@ -332,60 +332,117 @@
     } </style>
 </head>
 
-<body>
+<body><header class="top-header">
+  <div class="brand">
+    <img src="logo.png" alt="All Game Top Up BD" class="site-logo">
+    <span>All Game Top Up BD</span>
+  </div>
 
-<header class="top-header">
-    <div class="brand">
-        <img src="logo.png" alt="All Game Top Up BD Logo" class="site-logo">
-        <span>All Game Top Up BD</span>
+  <button class="login-btn">Login</button>
+</header>
+
+<div class="notice-bar">
+  <div class="notice-title">⚪ NOTICE</div>
+  <div class="notice-text">
+    সাইটটি শুধু মাত্র প্রাপ্তবয়স্কদের জন্য। বাবা/মা বা ফ্যামিলি সদস্যদের সামনে ব্যবহার করবেন না।
+  </div>
+  <button class="notice-close">×</button>
+</div>
+
+<div class="home-container">
+
+  <!-- BANNER -->
+  <div class="banner">
+    <img src="logo.png" alt="All Game Top Up BD">
+  </div>
+
+  <div class="slider-dots">
+    <span>━</span>
+    <span>━</span>
+    <span>━</span>
+    <span class="active">━</span>
+    <span>━</span>
+    <span>━</span>
+    <span>━</span>
+  </div>
+
+  <!-- GROUP & WHATSAPP -->
+  <div class="quick-buttons">
+    <button>
+      👥
+      <div>
+        <small>GROUP</small>
+        <strong>Join Group</strong>
+      </div>
+    </button>
+
+    <button>
+      💬
+      <div>
+        <small>CHAT</small>
+        <strong>WhatsApp</strong>
+      </div>
+    </button>
+  </div>
+
+  <!-- SPECIAL OFFER -->
+  <h2 class="section-title">Special Offer</h2>
+
+  <div class="offers">
+
+    <div class="offer">
+      <img src="logo.png">
+      <p>Mystery Box</p>
     </div>
 
-    <button class="login-btn">Login</button>
-</header>
-<div class="notice-bar">
-    <div class="notice-title">⚪ NOTICE</div>
-    <div class="notice-text">সাইটটি শুধু মাত্র প্রাপ্তবয়স্কদের জন্য। বাবা/মা বা ফ্যামিলি সদস্যদের সামনে ব্যবহার করবেন না।</div>
-    <button class="notice-close">×</button>
+    <div class="offer">
+      <img src="logo.png">
+      <p>Weekly Offer</p>
+    </div>
+
+    <div class="offer">
+      <img src="logo.png">
+      <p>FRIDAY OFFER</p>
+    </div>
+
+    <div class="offer">
+      <img src="logo.png">
+      <p>Special Offer</p>
+    </div>
+
+  </div>
+
 </div>
-<div class="container">
 
-  <!-- GAME INFORMATION -->
-  <div class="card">
+<!-- FLOATING SUPPORT -->
+<div class="support-btn">🎧</div>
 
-    <h3>🎮 Game নির্বাচন করুন</h3>
+<!-- BOTTOM NAVIGATION -->
+<div class="bottom-nav">
 
-    <label>Game</label>
+  <div class="nav-item active">
+    <span>⌂</span>
+    <small>Home</small>
+  </div>
 
-    <select id="game">
-      <option value="">-- Game নির্বাচন করুন --</option>
-      <option value="Free Fire">Free Fire</option>
-      <option value="PUBG Mobile">PUBG Mobile</option>
-      <option value="Mobile Legends">Mobile Legends</option>
-    </select>
+  <div class="nav-item">
+    <span>▶</span>
+    <small>Tutorial</small>
+  </div>
 
-    <label>Player ID / UID</label>
-    <input
-      type="text"
-      id="playerId"
-      placeholder="আপনার Player ID / UID লিখুন"
-    >
+  <div class="nav-item">
+    <span>▦</span>
+    <small>TopUp</small>
+  </div>
 
-    <label>Server / Zone</label>
-    <input
-      type="text"
-      id="server"
-      placeholder="প্রয়োজন হলে Server / Zone লিখুন"
-    >
+  <div class="nav-item">
+    <span>♧</span>
+    <small>Contact Us</small>
+  </div>
 
   </div>
 
 
-  <!-- PACKAGE -->
-  <div class="card">
-
-    <h3>💰 প্যাকেজ নির্বাচন করুন</h3>
-
-    <div class="packages">
 
       <div class="package"
            onclick="pkg('Weekly',158,this)">
@@ -547,50 +604,6 @@
       🛒 ORDER NOW
     </button>
 
-    <div id="success" class="success"></div>
-
-  </div>
-
-</div>
-
-
-<footer>
-  © 2026 Game TopUp BD — All Rights Reserved
-</footer>
-
-
-<script>
-
-  let selectedPackage = "";
-  let selectedPrice = 0;
-  let selectedPayment = "";
-
-
-  /* PACKAGE SELECT */
-
-  function pkg(name, price, element){
-
-    selectedPackage = name;
-    selectedPrice = price;
-
-    document
-      .querySelectorAll(".package")
-      .forEach(function(x){
-        x.classList.remove("selected");
-      });
-
-    element.classList.add("selected");
-  }
-
-
-  /* PAYMENT SELECT */
-
-  function paymentSelect(method, element){
-
-    selectedPayment = method;
-
-    document
-      .querySelectorAll(".payment")
       .forEach(function(x){
         x.classList.remove("selected");
       });
