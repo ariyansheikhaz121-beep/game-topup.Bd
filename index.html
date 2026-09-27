@@ -235,7 +235,45 @@
       }
 
     
-  </style>
+ .notice-bar{
+    display:flex;
+    align-items:center;
+    background:white;
+    border:1px solid #ddd;
+    border-radius:15px;
+    margin:15px;
+    overflow:hidden;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+}
+
+.notice-title{
+    background:#299bc4;
+    color:white;
+    font-weight:bold;
+    font-size:18px;
+    padding:18px 20px;
+    white-space:nowrap;
+}
+
+.notice-text{
+    flex:1;
+    padding:12px;
+    font-size:14px;
+    color:#444;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.notice-close{
+    width:52px;
+    height:52px;
+    margin-right:5px;
+    border:none;
+    border-radius:50%;
+    background:#299bc4;
+    color:white;
+    font-size:30px;
+      } </style>
 </head>
 
 <body>
@@ -248,7 +286,11 @@
 
     <button class="login-btn">Login</button>
 </header>
-
+<div class="notice-bar">
+    <div class="notice-title">⚪ NOTICE</div>
+    <div class="notice-text">সাইটটি শুধু মাত্র প্রাপ্তবয়স্কদের জন্য। বাবা/মা বা ফ্যামিলি সদস্যদের সামনে ব্যবহার করবেন না।</div>
+    <button class="notice-close">×</button>
+</div>
 <div class="container">
 
   <!-- GAME INFORMATION -->
