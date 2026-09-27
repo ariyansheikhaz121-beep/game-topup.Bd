@@ -273,7 +273,63 @@
     background:#299bc4;
     color:white;
     font-size:30px;
-      } </style>
+      }.top-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#fff;
+    padding:18px 20px;
+    border-bottom:1px solid #ddd;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.top-header .site-logo{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+    margin:0;
+}
+
+.brand span{
+    font-size:22px;
+    font-weight:bold;
+    color:#123b5d;
+}
+
+.login-btn{
+    background:#2b9ac1;
+    color:white;
+    border:none;
+    border-radius:7px;
+    padding:12px 20px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+@media(max-width:450px){
+    .top-header{
+        padding:15px 12px;
+    }
+
+    .brand span{
+        font-size:18px;
+    }
+
+    .top-header .site-logo{
+        width:50px;
+        height:50px;
+    }
+
+    .login-btn{
+        padding:10px 16px;
+        font-size:16px;
+    }
+    } </style>
 </head>
 
 <body>
